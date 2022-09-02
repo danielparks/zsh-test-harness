@@ -11,9 +11,12 @@ main () {
 		-keep=keep \
 		{h,-help}=help
 
-	if [[ $? != 0 || -n $help ]] ; then
-		echo "Usage: run-tests.zsh [--show-output] [--keep] [test-files]" >&2
+	if [[ $? != 0 ]] ; then
+		usage >&2
 		exit 1
+	elif [[ -n $help ]] ; then
+		usage
+		exit 0
 	fi
 
 	# Optionally accept paths to tests to run. Directories will be recursed into.
@@ -37,6 +40,22 @@ main () {
 	if [[ ! $keep ]] ; then
 		rm -rf $working_root
 	fi
+}
+
+usage () {
+  cat <<END
+Usage: run-tests.zsh [--help] [--show-output] [--keep] [test-files]
+
+  --help         Show this message.
+  --show-output  Show output from all tests, not just the ones that fail.
+  --keep         Keep the test working directory instead of deleting it.
+
+test-files:
+  Optional path to tests to run. If a path is a directory, it will run all
+  files found within the directory.
+
+  Default: ./tests
+END
 }
 
 run_test () {
