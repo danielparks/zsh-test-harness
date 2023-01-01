@@ -27,6 +27,7 @@ main () {
 
 	local source_root=$(pwd)
 	local working_root=$(mktemp -d)
+	integer succeeded=0 failed=0
 
 	if [[ $keep ]] ; then
 		echo "Running tests in $working_root"
@@ -34,11 +35,20 @@ main () {
 
 	IFS=$'\n'
 	for f in $(find $tests -type f) ; do
-		run_test "$show_output" "$source_root" "$working_root" "$f"
+		if run_test "$show_output" "$source_root" "$working_root" "$f" ; then
+			succeeded=$(( succeeded + 1 ))
+		else
+			failed=$(( failed + 1 ))
+		fi
 	done
 
 	if [[ ! $keep ]] ; then
 		rm -rf $working_root
+	fi
+
+	echo "Tests complete: ${succeeded} succeeded, ${failed} failed."
+	if [[ $failed > 0 ]] ; then
+		exit 1
 	fi
 }
 
@@ -75,6 +85,7 @@ run_test () {
 		echo Test $test_file failed with code $code:
 		cat $working_root/$test_file.out | sed -e 's/^/  /'
 		echo
+		return 1
 	elif [[ $show_output ]] ; then
 		echo Test $test_file succeeded:
 		cat $working_root/$test_file.out
