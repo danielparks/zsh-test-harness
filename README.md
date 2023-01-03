@@ -25,6 +25,13 @@ See [danielparks-zsh-theme][] for an example of a repo with tests.
 
 Copy run-test.zsh into `$PATH`, or just copy it into the repo with the tests.
 
+## Other shell testing projects
+
+Other shell testing frameworks include:
+
+ * [ShellSpec](https://shellspec.info) ([GitHub](https://github.com/shellspec/shellspec))
+ * [ZUnit](https://zunit.xyz) ([GitHub](https://github.com/zunit-zsh/zunit))
+
 ## License
 
 This project dual-licensed under the Apache 2 and MIT licenses. You may choose
