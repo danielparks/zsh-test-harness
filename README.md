@@ -32,6 +32,12 @@ Other shell testing frameworks include:
  * [ShellSpec](https://shellspec.info) ([GitHub](https://github.com/shellspec/shellspec))
  * [ZUnit](https://zunit.xyz) ([GitHub](https://github.com/zunit-zsh/zunit))
 
+## Development status
+
+I don’t have plans to add features to this, but I might add things if it’s
+helpful for another project. That said, if you think this is a good fit for you
+but need changes I’m open to [suggestions][] and [PRs][].
+
 ## License
 
 This project dual-licensed under the Apache 2 and MIT licenses. You may choose
@@ -48,3 +54,5 @@ additional terms or conditions.
 
 
 [danielparks-zsh-theme]: https://github.com/danielparks/danielparks-zsh-theme
+[suggestions]: https://github.com/danielparks/zsh-test-harness/issues
+[PRs]: https://github.com/danielparks/zsh-test-harness/pulls
